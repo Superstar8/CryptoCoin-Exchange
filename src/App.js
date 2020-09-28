@@ -1,38 +1,59 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Coin from './components/Coin/Coin';
+import Coinlist from './components/Coinlist/Coinlist';
 import AccountBalance from './components/AccountBalance/AccountBalance';
+import ExchHeader from './components/ExchHeader/ExchHeader';
+import styled from 'styled-components';
 
+const Div = styled.div`
+text-align: center;
+background-color: #90b4fc;
+color: rgb(23, 12, 40)
+`;
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src= {logo} alt="React logo" className= "App-logo"/>
-        <h1 className= "App-title">
-          Crypto Coin Exchange
-        </h1>
-          </header>
-          <AccountBalance amount= {10000}/>
-      <table className= "coin-table">
-          <thead>
-              <tr>
-                  <th>Name</th>
-                  <th>Ticker</th>
-                  <th>Price</th>
-              </tr>
-          </thead>
-          <tbody>
-            <Coin name= "Bitcoin" ticker= "BTC" price= {9999.99}/>
-            <Coin name= "Ethereum" ticker= "ETH" price={355.05}/>
-            <Coin name= "Ripple" ticker= "XRP" price= {0.2453}/>
-            <Coin name= "Polkadot" ticker= "DOT" price= {4.21}/>
-            
-          </tbody>   
-      </table>
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      balance: 10000,
+      coinData: [
+        {
+          name: "Bitcoin",
+          ticker: "BTC",
+          price: 9999.99
+        },
+        {
+          name: "Ethereum",
+          ticker: "ETH",
+          price: 355.05
+        },
+        {
+          name: "Ripple",
+          ticker: "XRP",
+          price: 0.2453
+        },
+        {
+          name: "Polkadot",
+          ticker: "DOT",
+          price: 4.21
+        },
+        {
+          name: "Bitcoin Cash",
+          ticker: "BCH",
+          price: 232.22
+        },
+      ]
+    }
+  }
+  render() {
+    return (
+      <Div className="App">
+            <ExchHeader/>
+            <AccountBalance amount= {this.state.balance}/>
+            <Coinlist coinData= {this.state.coinData} />
+      </Div>
+    );
+  }
+
 }
 
 export default App;
