@@ -9,23 +9,13 @@ width: 25vh;
 `;
 
 export default class Coin extends Component {
- constructor(props){
-     super(props);    
-     this.handleClick= this.handleClick.bind(this);
- }
 
-handleClick(event) {
+
+handleClick = (event) => {
     event.preventDefault();
 
     this.props.handleRefresh(this.props.ticker);
-    /*
-    const randomPercentage = 0.995 + Math.random() * 0.01;
-    this.setState(function (oldstate) {
-        return {
-         price: oldstate.price * randomPercentage
-        };
-    });
-*/
+
 }
 
     render() {
@@ -34,6 +24,7 @@ handleClick(event) {
             <Td>{this.props.name}</Td>
             <Td>{this.props.ticker}</Td>
             <Td>${this.props.price}</Td>
+            {this.props.showBalance ? <Td>${this.props.balance}</Td> : null}
             <Td>
                 <form>
                   <button onClick={this.handleClick} >Refresh</button>
